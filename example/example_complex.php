@@ -15,7 +15,7 @@ date_default_timezone_set('America/Los_Angeles');
 
 
 // The URI we want to start crawling with
-$seed = "http://news.baidu.com/";
+$seed = 'http://www.dbmeinv.com/';
 
 // We want to allow all subdomains of dmoz.org
 $allowSubDomains = true;
@@ -26,11 +26,11 @@ $spider = new Spider($seed);
 // //li[contains(@class, "span3")]/div[@class="thumbnail"]
 
 // Set some sane defaults for this example. We only visit the first level of www.dmoz.org. We stop at 10 queued resources
-$spider->setMaxDepth(1);
+$spider->setMaxDepth(5);
 $spider->setMaxQueueSize(10);
 
 // We add an URI discoverer. Without it, the spider wouldn't get past the seed resource.
-$spider->addDiscoverer(new XPathExpressionDiscoverer("//ul[@class='pagination pagination-sm']/li/a"));
+$spider->addDiscoverer(new XPathExpressionDiscoverer("//li[@id='dbgroup_menu]/a"));
 
 // Let's tell the spider to save all found resources on the filesystem
 $spider->setPersistenceHandler(
