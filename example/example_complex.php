@@ -30,7 +30,7 @@ $spider->setMaxDepth(5);
 $spider->setMaxQueueSize(10);
 
 // We add an URI discoverer. Without it, the spider wouldn't get past the seed resource.
-$spider->addDiscoverer(new XPathExpressionDiscoverer("//li[@id='dbgroup_menu]/a"));
+$spider->addDiscoverer(new XPathExpressionDiscoverer("//ul[@class='nav nav-pills']/li/a"));
 
 // Let's tell the spider to save all found resources on the filesystem
 $spider->setPersistenceHandler(

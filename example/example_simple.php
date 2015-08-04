@@ -9,7 +9,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $spider = new Spider('http://www.dbmeinv.com/');
 
 // Add a URI discoverer. Without it, the spider does nothing. In this case, we want <a> tags from a certain <div>
-$spider->addDiscoverer(new XPathExpressionDiscoverer("//ul[@class='nav nav-pills']//li//a"));
+$spider->addDiscoverer(new XPathExpressionDiscoverer("//ul[@class='nav nav-pills']/li/a"));
 
 // Set some sane options for this example. In this case, we only get the first 10 items from the start page.
 $spider->setMaxDepth(5);
@@ -36,7 +36,7 @@ foreach ($spider->getPersistenceHandler() as $resource) {
             });
 
     foreach ($datas as $data) {
-        echo $data.'\n';
+        echo $data."\n";
     }
 
 }
