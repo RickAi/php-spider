@@ -11,8 +11,6 @@ use VDB\Spider\Filter\Prefetch\UriWithQueryStringFilter;
 use VDB\Spider\Spider;
 
 require_once('example_complex_bootstrap.php');
-date_default_timezone_set('America/Los_Angeles');
-
 
 // The URI we want to start crawling with
 $seed = 'http://www.dbmeinv.com/';

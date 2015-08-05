@@ -6,10 +6,11 @@ use VDB\Spider\Spider;
 require_once __DIR__ . '/../vendor/autoload.php';
 
 // Create Spider
-$spider = new Spider('http://www.dbmeinv.com/');
+$spider = new Spider('https://www.desktoppr.co/wallpapers');
 
 // Add a URI discoverer. Without it, the spider does nothing. In this case, we want <a> tags from a certain <div>
-$spider->addDiscoverer(new XPathExpressionDiscoverer("//ul[@class='nav nav-pills']/li/a"));
+$spider->addDiscoverer(new XPathExpressionDiscoverer("//div[@class='wallpaper wallpaper-small-wrap']/div[@class='image']/a"));
+$spider->addDiscoverer(new XPathExpressionDiscoverer("//span[@class='page']/a"));
 
 // Set some sane options for this example. In this case, we only get the first 10 items from the start page.
 $spider->setMaxDepth(5);
@@ -21,7 +22,7 @@ $spider->crawl();
 // Report
 $stats = $spider->getStatsHandler();
 echo "\nSPIDER ID: " . $stats->getSpiderId();
-echo "\n  ENQUEUED:  " . count($stats->getQueued());
+echo"\n  ENQUEUED:  " . count($stats->getQueued());
 echo "\n  SKIPPED:   " . count($stats->getFiltered());
 echo "\n  FAILED:    " . count($stats->getFailed());
 
@@ -30,13 +31,12 @@ echo "\n  FAILED:    " . count($stats->getFailed());
 echo "\n\nDOWNLOADED RESOURCES: ";
 foreach ($spider->getPersistenceHandler() as $resource) {
     $datas = $resource->getCrawler()
-            ->filterXpath("//li[@class='span3']/div[@class='thumbnail']/div[@class='img_single']/a/img")
-            ->each(function($node, $i){
-                return $node->attr('src');
-            });
+        ->filterXpath("//div[@class='wallpaper wallpaper-large-wrap']/div[@class='preview']/div[@class='image']/img")
+        ->each(function($node, $i){
+            return $node->attr('src');
+        });
 
     foreach ($datas as $data) {
         echo $data."\n";
     }
-
 }
