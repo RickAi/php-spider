@@ -10,8 +10,11 @@ namespace Example;
  */
 use DateTime;
 
-
-require_once('config.php');
+// define database info
+DEFINE ('DB_HOST', 'localhost');
+DEFINE ('DB_USERNAME', 'homestead');
+DEFINE ('DB_PASSWORD', 'secret');
+DEFINE ('DB_DBNAME', 'pic_dock');
 
 class DBManager
 {

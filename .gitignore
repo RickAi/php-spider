@@ -5,3 +5,4 @@ TODO.md
 example/logs/*.log
 *.doctrinecache.php
 .DS_Store
+pic_dock/config.php
