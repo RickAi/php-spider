@@ -14,7 +14,7 @@ use DateTime;
 DEFINE ('DB_HOST', 'localhost');
 DEFINE ('DB_USERNAME', 'homestead');
 DEFINE ('DB_PASSWORD', 'secret');
-DEFINE ('DB_DBNAME', 'pic_dock');
+DEFINE ('DB_DBNAME', 'blog');
 
 class DBManager
 {
@@ -38,9 +38,9 @@ class DBManager
 
     // insert picture
     public function insertPic($url, DateTime $dateTime){
-        $table_name = 'pics';
+        $table_name = 'pictures';
         $attr1 = 'url';
-        $attr2 = 'create_date';
+        $attr2 = 'created_at';
         $url = "'".$url."'";
         $date = "'".$dateTime->format("Y-m-d H:i:s")."'";
 
