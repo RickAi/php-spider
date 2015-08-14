@@ -14,8 +14,8 @@ use VDB\Spider\Spider;
 require_once('example_complex_bootstrap.php');
 
 // generate random integer for page number
-//$page_number = rand(1, 106);
-$page_str = "page/53";
+$page_number = rand(1, 106);
+$page_str = "page/".$page_number;
 
 // init config
 $db_manager = DBManager::getInstance();
@@ -30,7 +30,7 @@ $spider->setMaxQueueSize(1000);
 $spider->addDiscoverer(new XPathExpressionDiscoverer("//div[@class='pagination']/ul[@class='clearfix']/li/a"));
 
 // spider config
-$spider->setTraversalAlgorithm(Spider::ALGORITHM_DEPTH_FIRST);
+$spider->setTraversalAlgorithm(Spider::ALGORITHM_BREADTH_FIRST);
 // We add an eventlistener to the crawler that implements a politeness policy. We wait 450ms between every request to the same domain
 $politenessPolicyEventListener = new PolitenessPolicyListener(450);
 $spider->getDispatcher()->addListener(
